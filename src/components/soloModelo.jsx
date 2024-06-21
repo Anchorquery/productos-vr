@@ -35,8 +35,13 @@ const SoloModelo = () => {
             // La cámara está activa, puedes hacer algo con el flujo de video si lo deseas
             console.log("Cámara activada");
         } catch (error) {
-            // Muestra un mensaje de error en la interfaz de usuario
-            document.getElementById("error-message").textContent = "Error al acceder a la cámara.";
+            // Espera a que se cargue el DOM antes de buscar el elemento
+            document.addEventListener("DOMContentLoaded", () => {
+                const errorMessageElement = document.getElementById("error-message");
+                if (errorMessageElement) {
+                    errorMessageElement.textContent = "Error al acceder a la cámara.";
+                }
+            });
             console.error("Error al acceder a la cámara:", error);
         }
     };
